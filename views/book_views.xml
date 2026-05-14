@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_book_form" model="ir.ui.view">
+        <field name="name">ai.example.book.form</field>
+        <field name="model">ai.example.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_mock_embedding" string="Generate Mock Vector" type="object" class="btn-primary"/>
+                    <button name="action_find_similar" string="Find Similar Books" type="object" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="description_vector" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_book_tree" model="ir.ui.view">
+        <field name="name">ai.example.book.tree</field>
+        <field name="model">ai.example.book</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_books" model="ir.actions.act_window">
+        <field name="name">AI Books Example</field>
+        <field name="res_model">ai.example.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_ai_book_root" name="AI Book Similarity" web_icon="ai,static/description/icon.png"/>
+    <menuitem id="menu_books" name="Books" parent="menu_ai_book_root" action="action_books"/>
+</odoo>
